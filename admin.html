@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Admin Panel</title>
+		<link rel="icon" type="image/x-icon" href="icon.ico">
+		<script src="hid.js"></script>
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script type="text/javascript" src="decode.js"></script>
+		<script>
+			document.addEventListener("contextmenu", function (e){
+		    e.preventDefault();
+			}, false);
+			document.onkeydown = function(e) {
+			  if(event.keyCode == 123) {
+			     return false;
+			  }
+			  if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+			     return false;
+			  }
+			  if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+			     return false;
+			  }
+			  if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+			     return false;
+			  }
+			  if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+			     return false;
+			  }
+			}
+		</script>
+	</head>
+	<body>
+		<h1 style="color:white;">Get Messages: </h1>
+		<form action="/fmsg" method="GET" class="pure-form pure-form-aligned">
+			<input type="submit" name="send" class="button" value="Messages"/> 
+		</form>
+		<h1 style="color:white;">Delete Message: </h1>
+		<form action="/purge" method="GET" class="pure-form pure-form-aligned">
+			<input type="text" name="Del" id="Del" required />
+			<input type="submit" name="send" class="button" value="Delete"/> 
+		</form>
+		<h1 style="color:white;">Add item to blocklist: </h1>
+		<form action="/addblock" method="GET" class="pure-form pure-form-aligned">
+			<input type="text" name="AddB" id="AddB" required />
+			<input type="submit" name="send" class="button" value="Add"/> 
+		</form>
+		<h1 style="color:white;">Delete Messages of that type: </h1>
+		<form action="/xlpurge" method="GET" class="pure-form pure-form-aligned">
+			<input type="text" name="DelXL" id="DelXL" required />
+			<input type="submit" name="send" class="button" value="Delete XL"/> 
+		</form>
+		<h1 style="color:white;">Delete all Messages: </h1>
+		<form action="/rmall" method="GET" class="pure-form pure-form-aligned">
+			<input type="submit" name="send" class="button" value="[Delete All]"/> 
+		</form>
+		<h1 style="color:white;">Create chat restore point: </h1>
+		<form action="/clone" method="GET" class="pure-form pure-form-aligned">
+			<input type="submit" name="send" class="button" value="Clone"/> 
+		</form>
+		<h1 style="color:white;">Send system message: </h1>
+		<form action="/sysmsg" method="GET" class="pure-form pure-form-aligned">
+			<input type="text" name="sys" id="sys" required />
+			<input type="submit" name="send" class="button" value="Send"/> 
+		</form>
+	</body>
+</html>

@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<title>Private Messaging</title>
+		<link rel="icon" type="image/x-icon" href="icon.ico">
+		<script src = "socketc.js"></script>
+		<script src= "socket.io/socket.io.js"></script>
+		<link rel="stylesheet" href="style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	</head>
+	<body onload = "onload()">
+		<b><label class="white" id = "NameLabel"> Username  </label></b>
+        <input id = "NameInput" type = "text">
+        <b><label class="white" id = "IDLabel" style=""> Refer </label></b>
+        <input id = "IDInput" value = "" type = "text">
+        <input id = "ConnectButton" class = "button-30" type = "submit" value = "Connect" onclick = "Connect()">
+      </div>
+      <h2 class="cyan" id = "RoomID"> Refer Code : None </h2>
+			<b class="cyan">All messages are deleted after all users leave, your message code is the code you send to the people or person you want to talk to. There is a max of 10 messages with no way to go back.</b>
+      <p class="cyan">~~~~~~~~~~This chatroom is not safe, only use with people you trust.~~~~~~~~~~</p>
+      <div id = "Chat" class="chat">
+        <p class="cyan" id = "Message0" class = "Message"> ‎  </p>
+        <p class="cyan" id = "Message1" class = "Message"> ‎  </p>
+        <p class="cyan" id = "Message2" class = "Message"> ‎  </p>
+        <p class="cyan" id = "Message3" class = "Message"> ‎  </p>
+        <p class="cyan" id = "Message4" class = "Message"> ‎  </p>
+        <p class="cyan" id = "Message5" class = "Message"> ‎  </p>
+        <p class="cyan" id = "Message6" class = "Message"> ‎  </p>
+        <p class="cyan" id = "Message7" class = "Message"> ‎  </p>
+        <p class="cyan" id = "Message8" class = "Message"> ‎  </p>
+        <p class="cyan" id = "Message9" class = "Message"> ‎  </p>
+				<p class="cyan" id = "Message10" class = "Message"> ‎  </p>
+			</div>
+        <b><label class="cyan" id = "MessageLabel"> Message </label></b>
+        <input id = "ComposedMessage" type = "text" onkeydown = "if (event.keyCode == 13) document.getElementById('SendMessage').click()">
+        <input class="cyan" id = "SendMessage" onclick="Send()" value = "Send" class = "button-80" type = "submit">
+	</body>
+</html>

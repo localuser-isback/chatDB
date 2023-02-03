@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>ChatDB Offical</title>
+		<link rel="icon" type="image/x-icon" href="icon.ico">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script type="text/javascript" src="decode.js"></script>
+		<meta name="color-scheme" content="light dark">
+		<script>
+			document.addEventListener("contextmenu", function (e){
+		    e.preventDefault();
+			}, false);
+			document.onkeydown = function(e) {
+			  if(event.keyCode == 123) {
+			     return false;
+			  }
+			  if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+			     return false;
+			  }
+			  if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+			     return false;
+			  }
+			  if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+			     return false;
+			  }
+			  if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+			     return false;
+			  }
+			}
+			time=setInterval(function(){
+				save();
+				logs();
+			},1000);
+		</script>
+		<script>
+			time=setInterval(function(){
+				active();
+			},5000);
+		</script>
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+	</head>
+	<body>
+		<center><h2>ChatDB</h2></center>
+		<p style="color:cyan;">Active Connections: <act id="active" style="color:cyan;"></act></p>
+		<form action="/send" method="GET"> 
+			<h4 style="color: white;">Username: </h4><input type="text" name="userN" id="userN" required />
+	    <h4 style="color: white;">Message: </h4><input type="text" name="inputC" id="inputC" required />
+	    <br/><center><input id="sub" type="submit" name="send" class="button" value="Send"/></center>
+		</form>
+		<br/>
+		<div class="chat" id="ChatBox" style="position: absolute; word-wrap: break-word; "><br></br></div>
+		<form action="private.html">
+		    	<button class="bottom">Private Chat!</button><br/>
+		</form>
+
+		
+		<!-- This stuff just talks to the backend and decodes the chat -->
+		<script> 
+			var chatlogs = "";
+			async function logs() {
+			  const res = await fetch('chatDB.txt')
+			  chatlogs = await res.text();
+				var decode = Base64.decode(chatlogs);
+			  document.getElementById("ChatBox").innerHTML = decode.replace(/\r\n/g, '<br />').replace(/[\r\n]/g, '<br />');
+			}
+			logs()
+		</script>
+		<script>
+			function save(){
+				const usernval =  $('#userN').val();
+				localStorage.setItem('username', usernval);
+			}
+		</script>
+		<script>
+			window.onload = function() {
+				var username = localStorage.getItem('username');
+				$('#userN').val(username)
+			}
+		</script>
+		<script>
+			async function active() {
+				var CL = window.location;
+				const res = await fetch(CL+"/active")
+			  ausers = await res.text();
+				document.getElementById('active').innerHTML = ausers;
+			}
+			active()
+		</script>
+	</body>
+</html>
